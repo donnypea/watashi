@@ -4,78 +4,177 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="shortcut icon" type="image" href="img/images.svg">
-	<title>Filterable Image Gallery JS</title>
+	<link rel="shortcut icon" type="image" href="">
+	<title>Donny</title>
+	<style>
+		/* Navbar Styles */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* horizontally center content */
+  padding: 10px;
+  background-color: #f5f5f5; /* optional */
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.navbar-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.navbar-links li a:hover {
+  background-color: #2e2e3e;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .navbar-links.show {
+    display: flex;
+  }
+
+  .navbar-links li {
+    text-align: left;
+    padding: 10px 0;
+  }
+}
+
+	</style>
 </head>
 <body>
+	<!-- Responsive Navbar -->
+<nav class="navbar">
+  <center><div class="navbar-brand">Donny's Gallery</div></center>
+  <ul class="navbar-links" id="nav-links">
+
+  </ul>
+</nav>
+
 	
 	<div class="container">
 		<div class="filter_buttons">
 			<button class="active" data-name="all">Show all</button>
-			<button data-name="phones">Phones</button>
-			<button data-name="clothes">Clothes</button>
-			<button data-name="shoes">Shoes</button>
+			<button data-name="Anime">Anime</button>
+			<button data-name="KDH">KDH</button>
 		</div>
 
 
 	<!-- Images Cards -->
 	<div class="filterable_cards">
-		<div class="card" data-name="phones">
-			<img src="img/phone-1.jpg" alt="">
+		<div class="card" data-name="Anime">
+			<img src="img/neema.jpg" alt="">
 			<div class="card_body">
-				<h6 class="card_title">Phone</h6>
-				<p class="card_text">Lorem ipsum dolor sit amet....</p>
+				<h6 class="card_title">Neema</h6>
 			</div>
 		</div>
 
-		<div class="card" data-name="phones">
-			<img src="img/phone-2.jpg" alt="">
+		<div class="card" data-name="Anime">
+			<img src="img/anya.jpg" alt="">
 			<div class="card_body">
-				<h6 class="card_title">Phone</h6>
-				<p class="card_text">Lorem ipsum dolor sit amet....</p>
+				<h6 class="card_title">Anya</h6>
+			</div>
+		</div>
+		<div class="card" data-name="Anime">
+			<img src="img/eren.jpg" alt="">
+			<div class="card_body">
+				<h6 class="card_title">Eren</h6>
+			</div>
+		</div>
+		<div class="card" data-name="Anime">
+			<img src="img/kidzoro.jpg" alt="">
+			<div class="card_body">
+				<h6 class="card_title">Kid zoro</h6>
 			</div>
 		</div>
 
-		<div class="card" data-name="clothes">
-			<img src="img/cloth-1.jpg" alt="">
+		<div class="card" data-name="KDH">
+			<img src="img/zoey.jpg" alt="">
 			<div class="card_body">
-				<h6 class="card_title">Clothes</h6>
-				<p class="card_text">Lorem ipsum dolor sit amet....</p>
+				<h6 class="card_title">Zoey</h6>
 			</div>
 		</div>
-		<div class="card" data-name="clothes">
-			<img src="img/cloth-2.jpg" alt="">
+		<div class="card" data-name="KDH">
+			<img src="img/rumi.jpg" alt="">
 			<div class="card_body">
-				<h6 class="card_title">Clothes</h6>
-				<p class="card_text">Lorem ipsum dolor sit amet....</p>
+				<h6 class="card_title">Rumi</h6>
 			</div>
 		</div>
-		<div class="card" data-name="clothes">
-			<img src="img/cloth-3.jpg" alt="">
+		<div class="card" data-name="KDH">
+			<img src="img/mira.jpg" alt="">
 			<div class="card_body">
-				<h6 class="card_title">Clothes</h6>
-				<p class="card_text">Lorem ipsum dolor sit amet....</p>
+				<h6 class="card_title">Mira</h6>
+			</div>
+		</div>
+
+		<div class="card" data-name="KDH">
+			<img src="img/babysaja.jpg" alt="">
+			<div class="card_body">
+				<h6 class="card_title">Baby Saja</h6>
+			</div>
+		</div>
+
+		<div class="card" data-name="KDH">
+			<img src="img/rujinu.jpg" alt="">
+			<div class="card_body">
+				<h6 class="card_title">Rujinu</h6>
 			</div>
 		</div>
 
 		<div class="card" data-name="shoes">
-			<img src="img/shoe-1.jpg" alt="">
+			<img src="img/zoeymysbaby.jpg" alt="">
 			<div class="card_body">
-				<h6 class="card_title">Shoes</h6>
-				<p class="card_text">Lorem ipsum dolor sit amet....</p>
+				<h6 class="card_title">Bilat</h6>
 			</div>
 		</div>
 		<div class="card" data-name="shoes">
-			<img src="img/shoe-2.jpg" alt="">
+			<img src="img/mirabby.jpg" alt="">
 			<div class="card_body">
-				<h6 class="card_title">Shoes</h6>
-				<p class="card_text">Lorem ipsum dolor sit amet....</p>
+				<h6 class="card_title">Oten</h6>
 			</div>
 		</div>
 	</div>
 	<!-- Images Cards -->
 </div>
 
+
 	<script src="js/app.js"></script>
 </body>
+
+
 </html>
