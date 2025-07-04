@@ -74,6 +74,85 @@
     padding: 10px 0;
   }
 }
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 80%;
+  max-height: 80vh;
+  animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+  from {transform: scale(0.7);}
+  to {transform: scale(1);}
+}
+
+.caption {
+  text-align: center;
+  color: #ccc;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  color: white;
+  font-size: 40px;
+  padding: 16px;
+  margin-top: -22px;
+  user-select: none;
+  transition: 0.3s;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+/* Fade animation */
+.modal-content.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.modal-content.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+}
+
+
 
 	</style>
 </head>
@@ -172,8 +251,89 @@
 	<!-- Images Cards -->
 </div>
 
+<!-- Image Modal -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+  <div class="caption" id="modalCaption"></div>
+  <a class="prev">&#10094;</a>
+  <a class="next">&#10095;</a>
+</div>
 
-	<script src="js/app.js"></script>
+
+<script>
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  const captionText = document.getElementById("modalCaption");
+  const closeBtn = document.querySelector(".close");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  const cards = document.querySelectorAll(".filterable_cards .card img");
+  const titles = document.querySelectorAll(".filterable_cards .card_title");
+  let currentIndex = 0;
+
+  const imageArray = Array.from(cards).map((img, index) => ({
+    src: img.src,
+    caption: titles[index].textContent
+  }));
+
+  cards.forEach((img, index) => {
+    img.addEventListener("click", () => {
+      currentIndex = index;
+      openModal(currentIndex);
+    });
+  });
+
+function openModal(index) {
+  modalImg.classList.remove("fade-in");
+  modalImg.classList.add("fade-out");
+
+  // Preload the image before showing
+  const tempImg = new Image();
+  tempImg.src = imageArray[index].src;
+
+  tempImg.onload = () => {
+    modalImg.src = tempImg.src;
+    captionText.textContent = imageArray[index].caption;
+
+    // Wait for browser to apply fade-out, then fade-in
+    requestAnimationFrame(() => {
+      modalImg.classList.remove("fade-out");
+      modalImg.classList.add("fade-in");
+    });
+  };
+
+  modal.style.display = "block";
+}
+
+
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  prevBtn.onclick = () => {
+    currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
+    openModal(currentIndex);
+  };
+
+  nextBtn.onclick = () => {
+    currentIndex = (currentIndex + 1) % imageArray.length;
+    openModal(currentIndex);
+  };
+
+  // Close modal on outside click
+  modal.onclick = (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  };
+</script>
+
+	<script src="js/app.js">
+		
+	</script>
 </body>
 
 
